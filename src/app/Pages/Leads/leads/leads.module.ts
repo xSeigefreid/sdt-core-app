@@ -6,16 +6,18 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { LeadsPage } from './leads.page';
+import { LeadsRoutingModule } from './leads-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    LeadsRoutingModule,
     RouterModule.forChild([
       {
         path: '',
-        component: LeadsPage
+        component:LeadsPage
       }
     ])
   ],
