@@ -19,6 +19,8 @@ const routes: Routes = [
   { path: 'edit-form', loadChildren: './Pages/Leads/edit-form/edit-form.module#EditFormPageModule' },
   { path: 'display', loadChildren: './Pages/Profile/display/display.module#DisplayPageModule' },
   { path: 'edit-form', loadChildren: './Pages/Profile/edit-form/edit-form.module#EditFormPageModule' },
+
+
 ];
 
 @NgModule({

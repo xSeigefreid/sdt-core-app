@@ -1,15 +1,30 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start"> 
+      <ion-menu-button menu="m1"><ion-icon name="menu"></ion-icon></ion-menu-button>
+    </ion-buttons>
       <ion-title>
-        Reports
-      </ion-title>
-    </ion-toolbar>
+            Reports</ion-title>
+            <ion-buttons slot="primary">
+              <ion-button><ion-icon name="search" ></ion-icon></ion-button>
+            </ion-buttons>
+          </ion-toolbar>
   </ion-header>
-  
-  <ion-content>
-    
-  </ion-content>
-  
+<ion-content>
+    <ion-tabs>
+        <ion-tab-bar slot="top">
+          <ion-tab-button tab="summary">
+            <ion-label>summary</ion-label>
+          </ion-tab-button>
+          <ion-tab-button tab="positive">
+            <ion-label>Positive Contacts</ion-label>
+          </ion-tab-button>
+          <ion-tab-button tab="negative">
+              <ion-label>Negative Contacts</ion-label>
+            </ion-tab-button>
+            <ion-tab-button tab="no">
+                <ion-label>No Contacts</ion-label>
+              </ion-tab-button>
+        </ion-tab-bar>
+      </ion-tabs>
+    </ion-content>
