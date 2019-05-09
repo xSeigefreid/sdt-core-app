@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { IonicModule } from '@ionic/angular';
 import { ReportPage } from './report.page';
-import { ReportRoutingModule } from './report-routing.module';
+import { ReportRoutingModule } from './reports-routing.module';
+
 
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
-    ReportRoutingModule,
+    ReportRoutingModule
   ],
   declarations: [ReportPage]
 })
