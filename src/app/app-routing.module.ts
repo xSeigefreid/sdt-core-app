@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'leads-list', loadChildren: './Pages/Leads/leads-list/leads-list.module#LeadsListPageModule' },
   { path: 'lapsed-list', loadChildren: './Pages/Leads/lapsed-list/lapsed-list.module#LapsedListPageModule' },
   { path: 'upcoming-list', loadChildren: './Pages/Leads/upcoming-list/upcoming-list.module#UpcomingListPageModule' },
-  { path: 'edit-form', loadChildren: './Pages/Leads/edit-form/edit-form.module#EditFormPageModule' },
+  // { path: 'edit-form', loadChildren: './Pages/Leads/edit-form/edit-form.module#EditFormPageModule' },
   { path: 'edit-form', loadChildren: './Pages/Profile/edit-form/edit-form.module#EditFormPageModule' },
 ];
 

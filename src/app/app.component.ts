@@ -12,7 +12,7 @@ export class AppComponent {
   public appPages = [
     {
       title: 'Profile',
-      url: '/display',
+      url: '/edit-form',
       icon: 'home'
     },
     {
