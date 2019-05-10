@@ -37,7 +37,8 @@ const routes: Routes = [
         path: '',
         redirectTo: '/leads/tabs/leads',
         pathMatch: 'full'
-    }
+    },
+  { path: 'leads-info', loadChildren: '../../../Pages/Leads/leads/leads-info/leads-info.module#LeadsInfoPageModule' }
 
 ];
 
