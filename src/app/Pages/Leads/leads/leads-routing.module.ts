@@ -20,6 +20,10 @@ const routes: Routes = [
                     {
                         path: '',
                         loadChildren: '../leads-list/leads-list.module#LeadsListPageModule'
+                    },
+                    {
+                        path: ':leadsid',
+                        loadChildren: '../leads-list/leads-info/leads-info.module#LeadsInfoPageModule'
                     }
                 ]
             },

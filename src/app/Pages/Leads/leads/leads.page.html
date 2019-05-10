@@ -8,53 +8,45 @@
       <ion-icon name="search" *ngIf="!isSearching"></ion-icon> 
       <ion-icon name="close-circle-outline" *ngIf="isSearching"></ion-icon> 
     </ion-button></ion-toolbar
-  ><ion-toolbar *ngIf="isSearching" style="--padding-end:30%;align-content: center;">
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-item lines="full">
+  ><ion-toolbar *ngIf="isSearching">
+          <ion-item style="width:50vw;align-content: center" slot="start" detail="true">
             <ion-label position="floating">Date from</ion-label>
             <ion-datetime
               display-format="MMM DD, YYYY"
               value="null" [(ngModel)]="date1">
           </ion-datetime>
-          <ion-icon name="arrow-back" slot="end"></ion-icon>
           </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-item>
+          <ion-item style="width:50vw;align-content: center" slot="end" detail="true">
             <ion-label position="floating">Date to</ion-label>
             <ion-datetime display-format="MMM DD, YYYY"  value="null" [(ngModel)]="date2"></ion-datetime>
-            <ion-icon name="arrow-back" slot="end"></ion-icon>
           </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
+        </ion-toolbar>
   <ion-toolbar *ngIf="isSearching">
       <ion-select interface="popover" slot="start" style="max-width: 45%; min-width: 45%;align-items: center;font-size:0.8rem" placeholder="Category" [(ngModel)]="categoryInput">
           <ion-select-option *ngFor='let cats of cat'>
             {{cats.category}}
           </ion-select-option>
           </ion-select>
-    <ion-button slot="end" (click)="search()">Search</ion-button>
-    <ion-button slot="end" (click)="clearFields()">
-        <ion-icon name="close"></ion-icon>
-      </ion-button>
+          <ion-chip (click)="search()" slot="end">
+            <ion-label>Search</ion-label>
+            <ion-icon name="search"></ion-icon>
+          </ion-chip>
+    <ion-chip (click)="clearFields()" slot="end">
+      <ion-label>Clear</ion-label>
+      <ion-icon name="close-circle"></ion-icon>
+    </ion-chip>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-tabs>
     <ion-tab-bar slot="top">
-      <ion-tab-button tab="upcoming">
+      <ion-tab-button tab="upcoming" style="--color-selected:#10dc60">
         <ion-label>Upcoming</ion-label>
       </ion-tab-button>
-      <ion-tab-button tab="leads">
+      <ion-tab-button tab="leads" style="--color-selected:#10dc60">
         <ion-label>Leads</ion-label>
       </ion-tab-button>
-      <ion-tab-button tab="lapsed">
+      <ion-tab-button tab="lapsed" style="--color-selected:#10dc60">
         <ion-label>Laps</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
