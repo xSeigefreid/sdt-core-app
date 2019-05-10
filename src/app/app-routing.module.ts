@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'lapsed-list', loadChildren: './Pages/Leads/lapsed-list/lapsed-list.module#LapsedListPageModule' },
   { path: 'upcoming-list', loadChildren: './Pages/Leads/upcoming-list/upcoming-list.module#UpcomingListPageModule' },
   { path: 'edit-form', loadChildren: './Pages/Leads/edit-form/edit-form.module#EditFormPageModule' },
-  { path: 'edit-form', loadChildren: './Pages/Profile/edit-form/edit-form.module#EditFormPageModule' },
+  { path: 'profile-edit-form', loadChildren: './Pages/Profile/edit-form/edit-form.module#EditFormPageModule' },
 ];
 
 @NgModule({
