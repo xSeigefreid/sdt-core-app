@@ -13,10 +13,11 @@
       <ion-col>
           <ion-card *ngFor="let profile of profiles" class="ion-no-margin">
 
-              <ion-card-header color="success">
+              <ion-card-header id="profile-header">
                 <!--Edit Button-->
                 <ion-button size="small" routerLink="/profile-edit-form" routerDirection="forward" fill="clear" class="ion-float-right">
                   <ion-icon style="color: #FFFFFF;" slot="icon-only" name="create"></ion-icon>
+                  <p>Edit Profile</p>
                 </ion-button>
                 <!--Image Avatar-->
                 <ion-avatar>

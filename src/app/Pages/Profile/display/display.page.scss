@@ -1,3 +1,22 @@
 ion-slide {
     height: calc(60vh - 140px);
   }
+
+  #profile-header {
+    background-image: linear-gradient(150deg, #10dc60, #ffffcc);
+  }
+
+#head-tool {
+    background-image: linear-gradient(50deg, #10dc60, yellow);
+  }
+  p {
+    color: #FFFFFF
+  }
+  .ion-color-favorite {
+    --ion-color-base:linear-gradient(150deg, #10dc60, #ffffcc);;
+    --ion-color-base-rgb: 105,187,123;
+    --ion-color-contrast: #ffffff;
+    --ion-color-contrast-rgb: 255,255,255;
+    --ion-color-shade: #0ec254;
+    --ion-color-tint: #28e070;
+  }
