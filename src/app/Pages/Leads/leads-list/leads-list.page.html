@@ -1,91 +1,15 @@
-<<<<<<< HEAD
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Leads</ion-title>
-    <ion-button fill="clear" slot="end">
-      <ion-icon name="search"></ion-icon>
-    </ion-button>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-grid>
-        <ion-row margin> UM OJT </ion-row>
-        <ion-row margin> Jerson | Leader</ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item>
-      <ion-grid>
-        <ion-row margin> UM OJT </ion-row>
-        <ion-row margin> Jules | Programmer</ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item>
-      <ion-grid>
-        <ion-row margin> UM OJT </ion-row>
-        <ion-row margin> Karl | Programmer</ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item>
-      <ion-grid>
-        <ion-row margin> UM OJT </ion-row>
-        <ion-row margin> Karl | Programmer</ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item>
-      <ion-grid>
-        <ion-row margin> UM OJT </ion-row>
-        <ion-row margin> Karl | Programmer</ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item>
-      <ion-grid>
-        <ion-row margin> UM OJT </ion-row>
-        <ion-row margin> Karl | Programmer</ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item>
-      <ion-grid>
-        <ion-row margin> UM OJT </ion-row>
-        <ion-row margin> Karl | Programmer</ion-row>
-      </ion-grid>
-    </ion-item>
-    <ion-item>
-      <ion-grid>
-        <ion-row margin> UM OJT </ion-row>
-        <ion-row margin> Karl | Programmer</ion-row>
-      </ion-grid> </ion-item
-    ><ion-item>
-      <ion-grid>
-        <ion-row margin> UM OJT </ion-row>
-        <ion-row margin> Karl | Programmer</ion-row>
-      </ion-grid>
-=======
 <ion-content>
   <ion-list>
     <ion-item
       *ngFor="let client of clients"
-      [routerLink]="['/info', client.client]"
-      style="--inner-padding-end:1px;--padding-start:10px;--inner-padding-start:0px;--padding-end:0px;"
-    >
-      <ion-avatar name="contact" slot="start" style="--border-radius: 5px">
-        <img
-          src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
-      /></ion-avatar>
-      <ion-card style="width:100%" slot="end">
-        
-        <ion-card-header>
-          <ion-card-subtitle>
-            {{ client.client }} | {{ client.position }}
-          </ion-card-subtitle>
-          <ion-card-title>
-            {{ client.company }}
-          </ion-card-title>
-        </ion-card-header>
-      </ion-card>
->>>>>>> d7a7e480a75f2ae8eacf4b7a04b9e79e1a08ce83
+      [routerLink]="['/info', client.client]">
+      <ion-thumbnail slot="start">
+        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ client.company }}</h2>
+        <p>{{ client.client }} | {{ client.position }}</p>
+      </ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
