@@ -8,3 +8,11 @@ ion-card{
     width: 100% !important;
     margin: 0 !important;
 }
+.ion-color-grade{
+    --ion-color-base:linear-gradient(to bottom right,blue, rgb(145, 160, 255));;
+    --ion-color-base-rgb: 56,128,255;
+    --ion-color-contrast: #ffffff;
+    --ion-color-contrast-rgb: 255,255,255;
+    --ion-color-shade: #3171e0;
+    --ion-color-tint: #4c8dff;
+  }
