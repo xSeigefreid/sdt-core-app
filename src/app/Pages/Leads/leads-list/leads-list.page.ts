@@ -11,12 +11,7 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class LeadsListPage implements OnInit {
   clients: LeadsClientModel[];
-  constructor(
-    private modalCtrl: ModalController,
-    private leadsService: LeadsService,
-    private route: ActivatedRoute,
-    private navController: NavController
-  ) {
+  constructor(private leadsService: LeadsService) {
     this.clients = leadsService.clients;
   }
   client: LeadsClientModel;
@@ -33,15 +28,5 @@ export class LeadsListPage implements OnInit {
   //     });
   // }
 
-  ngOnInit() {
-    this.route.paramMap.subscribe(paramMap => {
-      // if (!paramMap.has("leadsid")) {
-      //   this.navController.navigateBack("/leads/tabs/leads");
-      //   return;
-      // }
-      this.client = this.leadsService.clients.find(
-        l => l.id === paramMap.get("leadsid")
-      );
-    });
-  }
+  ngOnInit() {}
 }
