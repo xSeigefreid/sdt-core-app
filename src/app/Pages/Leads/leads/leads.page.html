@@ -5,32 +5,50 @@
     </ion-button>
     <ion-title>Leads</ion-title>
     <ion-button slot="end" fill="clear" (click)="enableSearch()">
-      <ion-icon name="search" *ngIf="!isSearching"></ion-icon> 
-      <ion-icon name="close-circle-outline" *ngIf="isSearching"></ion-icon> 
-    </ion-button></ion-toolbar
+      <ion-icon name="search" *ngIf="!isSearching"></ion-icon>
+      <ion-icon
+        name="close-circle-outline"
+        *ngIf="isSearching"
+      ></ion-icon> </ion-button></ion-toolbar
   ><ion-toolbar *ngIf="isSearching">
-          <ion-item style="width:50vw;align-content: center" slot="start" detail="true">
-            <ion-label position="floating">Date from</ion-label>
-            <ion-datetime
-              display-format="MMM DD, YYYY"
-              value="null" [(ngModel)]="date1">
-          </ion-datetime>
-          </ion-item>
-          <ion-item style="width:50vw;align-content: center" slot="end" detail="true">
-            <ion-label position="floating">Date to</ion-label>
-            <ion-datetime display-format="MMM DD, YYYY"  value="null" [(ngModel)]="date2"></ion-datetime>
-          </ion-item>
-        </ion-toolbar>
+    <ion-item
+      style="width:50vw;align-content: center"
+      slot="start"
+      detail="true"
+    >
+      <ion-label position="floating">Date from</ion-label>
+      <ion-datetime
+        display-format="MMM DD, YYYY"
+        value="null"
+        [(ngModel)]="date1"
+      >
+      </ion-datetime>
+    </ion-item>
+    <ion-item style="width:50vw;align-content: center" slot="end" detail="true">
+      <ion-label position="floating">Date to</ion-label>
+      <ion-datetime
+        display-format="MMM DD, YYYY"
+        value="null"
+        [(ngModel)]="date2"
+      ></ion-datetime>
+    </ion-item>
+  </ion-toolbar>
   <ion-toolbar *ngIf="isSearching">
-      <ion-select interface="popover" slot="start" style="max-width: 45%; min-width: 45%;align-items: center;font-size:0.8rem" placeholder="Category" [(ngModel)]="categoryInput">
-          <ion-select-option *ngFor='let cats of cat'>
-            {{cats.category}}
-          </ion-select-option>
-          </ion-select>
-          <ion-chip (click)="search()" slot="end">
-            <ion-label>Search</ion-label>
-            <ion-icon name="search"></ion-icon>
-          </ion-chip>
+    <ion-select
+      interface="popover"
+      slot="start"
+      style="max-width: 45%; min-width: 45%;align-items: center;font-size:0.8rem"
+      placeholder="Category"
+      [(ngModel)]="categoryInput"
+    >
+      <ion-select-option *ngFor="let cats of cat">
+        {{ cats.category }}
+      </ion-select-option>
+    </ion-select>
+    <ion-chip (click)="search()" slot="end">
+      <ion-label>Search</ion-label>
+      <ion-icon name="search"></ion-icon>
+    </ion-chip>
     <ion-chip (click)="clearFields()" slot="end">
       <ion-label>Clear</ion-label>
       <ion-icon name="close-circle"></ion-icon>

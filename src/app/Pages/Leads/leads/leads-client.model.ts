@@ -1,6 +1,6 @@
-export interface LeadsClientModel{
-    id:number;
-    company: string;
-    client: string;
-    position: string;
+export interface LeadsClientModel {
+  id: string;
+  company: string;
+  client: string;
+  position: string;
 }
