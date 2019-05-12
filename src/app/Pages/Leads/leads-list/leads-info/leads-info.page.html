@@ -1,9 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{client.client}}</ion-title>
+    <ion-title>{{ client.client }}</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-
+  <ion-segment (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="profile">
+      <ion-label>Profile</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="status">
+      <ion-label>Status</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <app-profile *ngIf="choice === 'profile'"></app-profile>
+  <app-status  *ngIf="choice === 'status'"></app-status>
 </ion-content>

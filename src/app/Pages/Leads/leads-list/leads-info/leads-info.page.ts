@@ -3,6 +3,7 @@ import { LeadsClientModel } from "../../leads/leads-client.model";
 import { ModalController, NavController } from "@ionic/angular";
 import { LeadsService } from "../../leads.service";
 import { ActivatedRoute } from "@angular/router";
+import { SegmentChangeEventDetail } from "@ionic/core";
 
 @Component({
   selector: "app-leads-info",
@@ -12,6 +13,8 @@ import { ActivatedRoute } from "@angular/router";
 export class LeadsInfoPage implements OnInit {
   clients: LeadsClientModel[];
   client: LeadsClientModel;
+  choice:string = 'profile';
+
   constructor(
     private modalCtrl: ModalController,
     private leadsService: LeadsService,
@@ -31,5 +34,9 @@ export class LeadsInfoPage implements OnInit {
         l => l.id === paramMap.get("leadsid")
       );
     });
+  }
+
+  segmentChanged(event: CustomEvent<SegmentChangeEventDetail>){
+    this.choice = event.detail.value;
   }
 }
