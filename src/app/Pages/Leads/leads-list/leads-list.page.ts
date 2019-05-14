@@ -3,6 +3,8 @@ import { LeadsClientModel } from "../leads/leads-client.model";
 import { ModalController, NavController } from "@ionic/angular";
 import { LeadsService } from "../leads.service";
 import { ActivatedRoute } from "@angular/router";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-leads-list",
@@ -10,12 +12,10 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./leads-list.page.scss"]
 })
 export class LeadsListPage implements OnInit {
-  clients: LeadsClientModel[];
-  constructor(private leadsService: LeadsService) {
-    this.clients = leadsService.clients;
-  }
+  clients: any;
+  constructor(private http: HttpClient, private leadsService: LeadsService) {}
   client: LeadsClientModel;
-
+  private leadsListSubs: Subscription;
   // onLeadsInfoPlace(name: string) {
   //   this.client = { ...this.clients.find(l => l.client === name) };
   //   this.modalCtrl
@@ -28,5 +28,15 @@ export class LeadsListPage implements OnInit {
   //     });
   // }
 
-  ngOnInit() {}
+  ngOnInit() {
+    
+    this.leadsListSubs = this.leadsService.leadsChanged.subscribe(leads => {
+      this.clients = leads;
+    });
+    this.leadsService.fetchLeadsList();
+  }
+
+  ngOnDestroy(){
+    this.leadsListSubs.unsubscribe();
+  }
 }

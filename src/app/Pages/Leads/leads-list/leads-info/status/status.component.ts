@@ -23,14 +23,14 @@ export class StatusComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(paramMap => {
-      if (!paramMap.has("leadsid")) {
-        this.navController.navigateBack("/leads/tabs/leads");
-        return;
-      }
-      this.statuses = this.leadsService.statuses.filter(
-        l => l.companyid === paramMap.get("leadsid")
-      );
-    });
+    // this.route.paramMap.subscribe(paramMap => {
+    //   if (!paramMap.has("leadsid")) {
+    //     this.navController.navigateBack("/leads/tabs/leads");
+    //     return;
+    //   }
+    //   this.statuses = this.leadsService.statuses.filter(
+    //     l => l.companyid === paramMap.get("leadsid")
+    //   );
+    // });
   }
 }

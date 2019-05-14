@@ -10,15 +10,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LeadsPage implements OnInit {
 
-  constructor(public popoverController:PopoverController,private http: HttpClient) { }
+  constructor(public popoverController:PopoverController) { }
 
   ngOnInit() {
-    this.http.get('http://localhost:5000/api/leads',
-      {headers: {Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1NzgwNzcyMiwiZXhwIjoxNTU3ODk0MTIyfQ._y8f85YXlRMnes9A7cXG-8P6Ls6QNia6CTk6hnyV3uM`}}
-    )
-      .subscribe((res) => {
-        console.log(res);
-      })
+    
 
   }
   async enableSearch(event){
