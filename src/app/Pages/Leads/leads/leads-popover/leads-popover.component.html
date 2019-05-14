@@ -1,0 +1,50 @@
+<ion-list lines="inline">
+    <ion-item>
+        <ion-label position="floating">Search:</ion-label>
+        <ion-input [(ngModel)]="searchInput"></ion-input>
+      </ion-item>
+
+  <ion-item detail="true">
+    <ion-label position="floating">Date from:</ion-label>
+    <ion-datetime
+      display-format="MMM DD, YYYY"
+      value="null"
+      [(ngModel)]="date1">
+    </ion-datetime>
+  </ion-item>
+
+  <ion-item detail="true">
+      <ion-label position="floating">Date to:</ion-label>
+      <ion-datetime
+        display-format="MMM DD, YYYY"
+        value="null"
+        [(ngModel)]="date2"></ion-datetime>
+    </ion-item>
+<!-- <ion-item detail="true">
+    <ion-select
+    interface="popover"
+    placeholder="Category"
+    [(ngModel)]="categoryInput">
+    <ion-select-option *ngFor="let cats of cat">
+      {{ cats.category }}
+    </ion-select-option>
+  </ion-select>
+</ion-item> -->
+<ion-item>
+  <ion-button size="default" expand="full" (click)="search()">
+    <ion-label>Search</ion-label>
+    <ion-icon name="search"></ion-icon>
+  </ion-button>
+</ion-item>
+<ion-item>
+  <ion-button size="default" expand="full" (click)="clearFields()">
+    <ion-label>Clear</ion-label>
+    <ion-icon name="close-circle"></ion-icon>
+  </ion-button>
+</ion-item>
+    <ion-item>
+        <ion-button size="default" expand="full" (click)="close()">
+          <ion-label>Close</ion-label>
+          <ion-icon name="close-circle"></ion-icon></ion-button>
+    </ion-item>
+</ion-list>

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { LeadsPage } from './leads.page';
 import { LeadsRoutingModule } from './leads-routing.module';
+import { LeadsPopoverComponent } from './leads-popover/leads-popover.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { LeadsRoutingModule } from './leads-routing.module';
       }
     ])
   ],
-  declarations: [LeadsPage]
+  entryComponents: [LeadsPopoverComponent],
+  declarations: [LeadsPage,LeadsPopoverComponent]
 })
 export class LeadsPageModule {}

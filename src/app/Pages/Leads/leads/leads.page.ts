@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LeadsClientModel } from './leads-client.model';
-import { CategoriesModel } from './categories.model';
+import { PopoverController } from '@ionic/angular';
+import { LeadsPopoverComponent } from './leads-popover/leads-popover.component';
 
 @Component({
   selector: 'app-leads',
@@ -9,53 +9,15 @@ import { CategoriesModel } from './categories.model';
 })
 export class LeadsPage implements OnInit {
 
-  @Input() cat: CategoriesModel[] = [{
-    category:'All'
-  },{
-    category:'Appointment Set'
-  },{
-    category:'Rescheduled'
-  },{
-    category:'For follow-up'
-  },{
-    category:'Close won'
-  },{
-    category:'Account assign'
-  },{
-    category:'Account lost'
-  },{
-    category:'No Budget'
-  },{
-    category:'No Interest'
-  },{
-    category:'Sent Proposal'
-  },
-  ];
-
-
-isSearching = false;
-date1:Date = null;
-date2:Date = null;
-categoryInput:string;
-
-  constructor() { }
+  constructor(public popoverController:PopoverController) { }
 
   ngOnInit() {
   }
-  enableSearch(){
-    this.isSearching = !this.isSearching;
-    this.date1 = null;
-    this.date2 = null;
+  async enableSearch(event){
+    const popover = await this.popoverController.create({
+      component:LeadsPopoverComponent,
+      event
+    });
+    return await popover.present();
   }
-  clearFields(){
-    this.date1 = null;
-    this.date2 = null;
-  }
-  search(){
-    
-    alert(this.date1+"\n"+this.date2+"\n"+this.categoryInput);
-    this.enableSearch();
-  }
-
-  
 }
