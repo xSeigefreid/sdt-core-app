@@ -4,6 +4,7 @@ import { ModalController, NavController } from "@ionic/angular";
 import { LeadsService } from "../../leads.service";
 import { ActivatedRoute } from "@angular/router";
 import { SegmentChangeEventDetail } from "@ionic/core";
+import { AddStatusComponent } from './add-status/add-status.component';
 
 @Component({
   selector: "app-leads-info",
@@ -38,5 +39,14 @@ export class LeadsInfoPage implements OnInit {
 
   segmentChanged(event: CustomEvent<SegmentChangeEventDetail>) {
     this.choice = event.detail.value;
+  }
+
+  gotostatusmodal() {
+    this.modalCtrl.create({
+      component:AddStatusComponent
+    }).then(modalEl => {
+      modalEl.present();
+      return modalEl.onDidDismiss();
+    });
   }
 }
