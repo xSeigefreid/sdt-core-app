@@ -40,3 +40,5 @@ export class LeadsInfoPage implements OnInit {
     this.choice = event.detail.value;
   }
 }
+
+

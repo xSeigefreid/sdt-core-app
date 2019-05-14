@@ -10,6 +10,7 @@ import { StatusComponent } from "./status/status.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SegmentChangeEventDetail } from '@ionic/core';
 
+
 const routes: Routes = [
   {
     path: "",
