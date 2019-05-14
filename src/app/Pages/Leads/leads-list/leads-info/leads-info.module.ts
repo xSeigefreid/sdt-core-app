@@ -8,7 +8,8 @@ import { IonicModule } from "@ionic/angular";
 import { LeadsInfoPage } from "./leads-info.page";
 import { StatusComponent } from "./status/status.component";
 import { ProfileComponent } from "./profile/profile.component";
-import { SegmentChangeEventDetail } from '@ionic/core';
+import { SegmentChangeEventDetail } from "@ionic/core";
+import { AddStatusComponent } from "./add-status/add-status.component";
 
 
 const routes: Routes = [
@@ -25,9 +26,13 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [LeadsInfoPage, StatusComponent, ProfileComponent],
+  declarations: [
+    LeadsInfoPage,
+    StatusComponent,
+    ProfileComponent,
+    AddStatusComponent
+  ],
+  entryComponents: [AddStatusComponent],
   exports: [StatusComponent, ProfileComponent]
 })
 export class LeadsInfoPageModule {}
-
-

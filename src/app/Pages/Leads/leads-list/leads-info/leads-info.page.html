@@ -18,5 +18,12 @@
   <app-profile *ngIf="choice === 'profile'"></app-profile>
   <app-status *ngIf="choice === 'status'"></app-status>
 </ion-content>
+<ion-fab *ngIf="choice === 'status'" (click) = "gotostatusmodal()" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+  
 
 
