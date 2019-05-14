@@ -13,7 +13,7 @@ import { SegmentChangeEventDetail } from "@ionic/core";
 export class LeadsInfoPage implements OnInit {
   clients: LeadsClientModel[];
   client: LeadsClientModel;
-  choice:string = 'profile';
+  choice: string = "profile";
 
   constructor(
     private modalCtrl: ModalController,
@@ -26,17 +26,17 @@ export class LeadsInfoPage implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
-      // if (!paramMap.has("leadsid")) {
-      //   this.navController.navigateBack("/leads/tabs/leads");
-      //   return;
-      // }
+      if (!paramMap.has("leadsid")) {
+        this.navController.navigateBack("/leads/tabs/leads");
+        return;
+      }
       this.client = this.leadsService.clients.find(
         l => l.id === paramMap.get("leadsid")
       );
     });
   }
 
-  segmentChanged(event: CustomEvent<SegmentChangeEventDetail>){
+  segmentChanged(event: CustomEvent<SegmentChangeEventDetail>) {
     this.choice = event.detail.value;
   }
 }

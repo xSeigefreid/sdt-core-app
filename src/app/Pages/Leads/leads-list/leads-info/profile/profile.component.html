@@ -1,8 +1,20 @@
 <ion-card>
   <ion-card-header>
-    <ion-card-title>Profile!</ion-card-title>
+    <ion-card-title>{{ client.client }}</ion-card-title>
+    <ion-card-subtitle>{{ client.address }}</ion-card-subtitle>
   </ion-card-header>
   <ion-card-content>
-    <p>Profile!!!!!!</p>
+    <dl>
+      <dt>Contact Information:</dt>
+      <dd>Phone: {{ client.phone }}</dd>
+      <dd>Mobile: {{ client.mobile }}</dd>
+      <dd>Email: {{ client.email }}</dd>
+      <dt>Company Information:</dt>
+      <dd>Website: {{ client.website }}</dd>
+      <dd>Emp size: {{ client.empsize }}</dd>
+      <dd>Revenue: {{ client.revenue }}</dd>
+      <dd>PC Users: {{ client.pcusers }}</dd>
+      <dd>SIC Description: {{ client.description }}</dd>
+    </dl>
   </ion-card-content>
 </ion-card>

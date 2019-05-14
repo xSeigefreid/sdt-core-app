@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{ client.client }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/leads/tabs/leads"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ client.company }}</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -13,5 +16,7 @@
     </ion-segment-button>
   </ion-segment>
   <app-profile *ngIf="choice === 'profile'"></app-profile>
-  <app-status  *ngIf="choice === 'status'"></app-status>
+  <app-status *ngIf="choice === 'status'"></app-status>
 </ion-content>
+
+
