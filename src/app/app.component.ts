@@ -12,8 +12,8 @@ export class AppComponent {
   public appPages = [
     {
       title: 'Profile',
-      url: '/edit-form',
-      icon: 'home'
+      url: '/display',
+      icon: 'person'
     },
     {
       title: 'Leads',
@@ -23,17 +23,17 @@ export class AppComponent {
     {
       title: 'Calendar',
       url: '/calendar',
-      icon: 'list'
+      icon: 'calendar'
     },
     {
       title: 'Reports',
       url: '/report',
-      icon: 'home'
+      icon: 'analytics'
     },
     {
       title: 'Logout',
       url: '/login',
-      icon: 'list'
+      icon: 'power'
     },
   ];
 

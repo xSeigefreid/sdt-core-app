@@ -1,0 +1,27 @@
+.ion-color-favorite {
+    --ion-color-base:linear-gradient(#3880ff, #ffffcc);
+    --ion-color-base-rgb: 105,187,123;
+    --ion-color-contrast: #ffffff;
+    --ion-color-contrast-rgb: 255,255,255;
+    --ion-color-shade: #3171e0;
+    --ion-color-tint: #4c8dff;
+  }
+  ion-item {
+    --background: transparent;
+  }
+  .row {
+    height: 100%;
+    margin-top: 8%;
+  }
+  #logo {
+    width: 150px; 
+    height: 150px;
+    margin: auto;
+  }
+  #sign-up {
+    color:#3880ff; 
+    margin:auto;
+  }
+  ion-content {
+    --overflow: hidden;
+}

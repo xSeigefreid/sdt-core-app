@@ -1,9 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <ion-button routerLink="/leads" routerDirection="forward"> Login </ion-button>
+<ion-content color="favorite" padding>
+  
+    <ion-grid>
+      <form #form="ngForm">
+        <ion-row class="row" color="primary-tint" justify-content-center>
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="12" class="ion-padding">
+            <div class="ion-padding">
+              <ion-img id="logo" src="./assets/icon/logo.png"></ion-img>
+            </div>
+            <div class="ion-padding-horizontal">
+              <ion-item>
+                <ion-input color="light" name="email" type="email" placeholder="your@email.com" ngModel required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input color="light" name="password" type="password" placeholder="Password" ngModel required></ion-input>
+              </ion-item>
+            </div>
+            <div padding>
+              <ion-button expand="block" routerLink="/leads" routerDirection="forward">
+                <legend>Login</legend>
+              </ion-button>
+            </div>
+            <div id="sign-up"text-center>
+              <p routerLink="/leads" routerDirection="forward">Sign Up</p>
+            </div>
+          </ion-col>
+        </ion-row>
+      </form> 
+    </ion-grid>
 </ion-content>
