@@ -4,8 +4,13 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Calendar
+      {{ viewTitle }}
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="add-target-button" (click)="onAddTargetClicked()"
+        >Add Target</ion-button
+      >
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -23,10 +28,4 @@
     startingDayWeek="1"
   >
   </calendar>
-
-  <ion-fab class="right-placement">
-    <ion-fab-button margin color="success" (click)="onAddTargetClicked()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
 </ion-content>

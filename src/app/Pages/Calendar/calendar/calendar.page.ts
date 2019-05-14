@@ -65,37 +65,6 @@ export class CalendarPage implements OnInit {
     };
   }
 
-  // Create the right event format and reload source
-  addEvent() {
-    let eventCopy = {
-      title: this.event.title,
-      startTime: new Date(this.event.startTime),
-      endTime: new Date(this.event.endTime),
-      allDay: this.event.allDay,
-      desc: this.event.desc
-    };
-
-    if (eventCopy.allDay) {
-      let start = eventCopy.startTime;
-      let end = eventCopy.endTime;
-
-      eventCopy.startTime = new Date(
-        Date.UTC(
-          start.getUTCFullYear(),
-          start.getUTCMonth(),
-          start.getUTCDate()
-        )
-      );
-      eventCopy.endTime = new Date(
-        Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), end.getUTCDate() + 1)
-      );
-    }
-
-    this.eventSource.push(eventCopy);
-    this.myCal.loadEvents();
-    this.resetEvent();
-  }
-
   // Focus today
   today() {
     this.calendar.currentDate = new Date();
@@ -122,7 +91,7 @@ export class CalendarPage implements OnInit {
           text: "View Details",
           handler: () => {
             // dre mag navigate
-            console.log("liam");
+            console.log("hello world");
           }
         }
       ]
@@ -140,8 +109,47 @@ export class CalendarPage implements OnInit {
 
   // Display add target modal
   onAddTargetClicked() {
-    this.modalCtrl.create({ component: AddTargetComponent }).then(modalEl => {
-      modalEl.present();
-    });
+    this.modalCtrl
+      .create({ component: AddTargetComponent })
+      .then(modalEl => {
+        modalEl.present();
+        return modalEl.onDidDismiss();
+      })
+      .then(resultData => {
+        if (resultData.role === "confirm") {
+          this.addEvent(resultData.data);
+        }
+      });
+  }
+
+  // Create the right event format and reload source
+  addEvent(event) {
+    let eventCopy = {
+      title: event.title,
+      startTime: new Date(event.startTime),
+      endTime: new Date(event.endTime),
+      allDay: event.allDay,
+      desc: event.desc
+    };
+
+    if (eventCopy.allDay) {
+      let start = eventCopy.startTime;
+      let end = eventCopy.endTime;
+
+      eventCopy.startTime = new Date(
+        Date.UTC(
+          start.getUTCFullYear(),
+          start.getUTCMonth(),
+          start.getUTCDate()
+        )
+      );
+      eventCopy.endTime = new Date(
+        Date.UTC(end.getUTCFullYear(), end.getUTCMonth(), end.getUTCDate() + 1)
+      );
+    }
+
+    this.eventSource.push(eventCopy);
+    this.myCal.loadEvents();
+    this.resetEvent();
   }
 }
