@@ -1,6 +1,7 @@
 ion-tab-button{
     width: 100px;
     height: 100px;
+    --color-selected: darkblue;
 }
 ion-card{
     display: flex;
@@ -15,4 +16,10 @@ ion-card{
     --ion-color-contrast-rgb: 255,255,255;
     --ion-color-shade: #3171e0;
     --ion-color-tint: #4c8dff;
-  }
+}
+.tab-button[aria-selected=true] {
+   
+    background: red; /* your background color*/
+}
+
+
