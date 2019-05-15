@@ -1,20 +1,20 @@
-<ion-card>
+ <ion-card>
   <ion-card-header>
-    <ion-card-title>{{ client.client }}</ion-card-title>
-    <ion-card-subtitle>{{ client.address }}</ion-card-subtitle>
+    <ion-card-title>{{ clients.first_name + clients.last_name }}</ion-card-title>
+    <ion-card-subtitle>{{ clients.address }}</ion-card-subtitle>
   </ion-card-header>
   <ion-card-content>
     <dl>
       <dt>Contact Information:</dt>
-      <dd>Phone: {{ client.phone }}</dd>
-      <dd>Mobile: {{ client.mobile }}</dd>
-      <dd>Email: {{ client.email }}</dd>
+      <dd>Phone: {{ clients.target }}</dd>
+      <dd>Mobile: {{ clients.sms }}</dd>
+      <dd>Email: {{ clients.email }}</dd>
       <dt>Company Information:</dt>
-      <dd>Website: {{ client.website }}</dd>
-      <dd>Emp size: {{ client.empsize }}</dd>
-      <dd>Revenue: {{ client.revenue }}</dd>
-      <dd>PC Users: {{ client.pcusers }}</dd>
-      <dd>SIC Description: {{ client.description }}</dd>
+      <dd>Website: {{ clients.website }}</dd>
+      <dd>Emp size: {{ clients.empsize }}</dd>
+      <dd>Revenue: {{ clients.rev }}</dd>
+      <dd>PC Users: {{ clients.pc_users }}</dd>
+      <dd>SIC Description: {{ clients.desc }}</dd>
     </dl>
   </ion-card-content>
 </ion-card>

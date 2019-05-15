@@ -5,6 +5,7 @@ import { LeadsService } from "../../leads.service";
 import { ActivatedRoute } from "@angular/router";
 import { SegmentChangeEventDetail } from "@ionic/core";
 import { AddStatusComponent } from './add-status/add-status.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-leads-info",
@@ -12,9 +13,10 @@ import { AddStatusComponent } from './add-status/add-status.component';
   styleUrls: ["./leads-info.page.scss"]
 })
 export class LeadsInfoPage implements OnInit {
-  clients: LeadsClientModel[];
-  client: LeadsClientModel;
+  clients: any=[];
   choice: string = "profile";
+  clientId:string;
+  private leadsListSubs: Subscription;
 
   constructor(
     private modalCtrl: ModalController,
@@ -22,7 +24,6 @@ export class LeadsInfoPage implements OnInit {
     private route: ActivatedRoute,
     private navController: NavController
   ) {
-    this.clients = leadsService.clients;
   }
 
   ngOnInit() {
@@ -31,11 +32,15 @@ export class LeadsInfoPage implements OnInit {
         this.navController.navigateBack("/leads/tabs/leads");
         return;
       }
-      this.client = this.leadsService.clients.find(
-        l => l.id === paramMap.get("leadsid")
-      );
+      this.clientId=paramMap.get("leadsid");
+      this.leadsListSubs = this.leadsService.leadsInfoChanged.subscribe(leads => {
+        this.clients = leads;
+      });
+      this.leadsService.fetchLeadsInfo(this.clientId);
     });
+    
   }
+
 
   segmentChanged(event: CustomEvent<SegmentChangeEventDetail>) {
     this.choice = event.detail.value;

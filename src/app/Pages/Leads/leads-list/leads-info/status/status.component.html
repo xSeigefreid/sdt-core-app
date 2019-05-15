@@ -1,14 +1,13 @@
 
   <ion-list>
-    <ion-item expand="block" *ngFor="let status of statuses">
+   <ion-item expand="block" *ngFor="let statusa of status">
       <ion-card>
         <ion-card-header>
-          <ion-card-title>{{ status.category }}</ion-card-title>
+          <ion-card-title>{{ statusa.call_result }}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <p>Event Date: {{ status.eventdate }}</p>
-          <p>Date Updated: {{ status.dateupdated }}</p>
-          <p>Note: {{ status.note }}</p>
+          <p>Event Date: {{ statusa.txn_date }}</p>
+          <p>Note: {{ statusa.notes }}</p>
         </ion-card-content>
       </ion-card>
     </ion-item>

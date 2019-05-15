@@ -3,6 +3,8 @@ import { ActivatedRoute } from "@angular/router";
 import { LeadsClientModel } from "../../../leads/leads-client.model";
 import { LeadsService } from "../../../leads.service";
 import { NavController } from "@ionic/angular";
+import { Subscription } from 'rxjs';
+import { LeadsInfoPage } from '../leads-info.page';
 
 @Component({
   selector: "app-profile",
@@ -10,26 +12,27 @@ import { NavController } from "@ionic/angular";
   styleUrls: ["./profile.component.scss"]
 })
 export class ProfileComponent implements OnInit {
-  client: LeadsClientModel;
-  clients: LeadsClientModel[];
+  clientId:string;
+  clients: any=[];
+  private leadsListSubs: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private leadsService: LeadsService,
     private navController: NavController
   ) {
-    this.clients = leadsService.clients;
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(paramMap => {
-      if (!paramMap.has("leadsid")) {
-        this.navController.navigateBack("/leads/tabs/leads");
-        return;
-      }
-      this.client = this.leadsService.clients.find(
-        l => l.id === paramMap.get("leadsid")
-      );
-    });
+   this.clientId=this.leadsService.fetchLeadsId();
+      this.leadsListSubs = this.leadsService.leadsInfoChanged.subscribe(leads => {
+        this.clients = leads;
+      });
+      this.leadsService.fetchLeadsInfo(this.clientId);
+  }
+
+
+  ngOnDestroy(){
+    this.leadsListSubs.unsubscribe();
   }
 }

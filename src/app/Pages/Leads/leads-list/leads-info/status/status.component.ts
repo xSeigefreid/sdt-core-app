@@ -4,6 +4,7 @@ import { LeadsClientModel } from "../../../leads/leads-client.model";
 import { LeadsService } from "../../../leads.service";
 import { NavController } from "@ionic/angular";
 import { StatusModel } from '../../../leads/status.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-status",
@@ -11,26 +12,27 @@ import { StatusModel } from '../../../leads/status.model';
   styleUrls: ["./status.component.scss"]
 })
 export class StatusComponent implements OnInit {
-  client: LeadsClientModel;
-  clients: LeadsClientModel[];
-  statuses: StatusModel[] = [];
+  clients: any;
+  status: any;
+  clientId:string;
+  private leadsListSubs: Subscription;
   constructor(
     private route: ActivatedRoute,
     private leadsService: LeadsService,
     private navController: NavController
   ) {
-    this.clients = leadsService.clients;
   }
 
   ngOnInit() {
-    // this.route.paramMap.subscribe(paramMap => {
-    //   if (!paramMap.has("leadsid")) {
-    //     this.navController.navigateBack("/leads/tabs/leads");
-    //     return;
-    //   }
-    //   this.statuses = this.leadsService.statuses.filter(
-    //     l => l.companyid === paramMap.get("leadsid")
-    //   );
-    // });
+    this.clientId=this.leadsService.fetchLeadsId();
+      this.leadsListSubs = this.leadsService.leadsEventsChanged.subscribe(leads => {
+        this.status = leads;
+      });
+      this.leadsService.fetchEventsInfo(this.clientId);
+
+  }
+
+  ngOnDestroy(){
+    this.leadsListSubs.unsubscribe();
   }
 }
