@@ -4,21 +4,32 @@
       <ion-menu-button></ion-menu-button>
     </ion-button>
     <ion-title>Leads</ion-title>
-    <ion-button slot="end" fill="clear" (click)="enableSearch($event)">
+    <ion-item lines="none" *ngIf="isSearching" color="transparent" slot="end">
+      Search Results for "{{ searchInput }}"
+      <ion-button fill="outline"   (click)="disableSearch()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-button
+      *ngIf="!isSearching"
+      slot="end"
+      fill="clear"
+      (click)="enableSearch($event)"
+    >
       <ion-icon name="search"></ion-icon>
-     </ion-button>
-    </ion-toolbar>
+    </ion-button>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-tabs>
     <ion-tab-bar slot="top">
-      <ion-tab-button tab="upcoming" style="--color-selected:#10dc60">
+      <ion-tab-button tab="upcoming">
         <ion-label>Upcoming</ion-label>
       </ion-tab-button>
-      <ion-tab-button tab="leads" style="--color-selected:#10dc60">
+      <ion-tab-button tab="leads">
         <ion-label>Leads</ion-label>
       </ion-tab-button>
-      <ion-tab-button tab="lapsed" style="--color-selected:#10dc60">
+      <ion-tab-button tab="lapsed">
         <ion-label>Laps</ion-label>
       </ion-tab-button>
     </ion-tab-bar>

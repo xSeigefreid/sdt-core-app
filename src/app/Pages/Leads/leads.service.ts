@@ -11,7 +11,7 @@ export class LeadsService {
   leadsChanged = new Subject<Object>();
   leadsInfoChanged = new Subject<Object>();
   leadsEventsChanged = new Subject<Object>();
-  clientId:string;
+  clientId: string;
 
   fetchLeadsList() {
     this.http
@@ -26,39 +26,51 @@ export class LeadsService {
       });
   }
 
-  fetchLeadsInfo(leadsID){
-
-    this.clientId=leadsID;
+  fetchLeadsInfo(leadsID) {
+    this.clientId = leadsID;
     this.http
-    .get("http://localhost:5000/api/leads/"+leadsID, {
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1NzgyMTI4OCwiZXhwIjoxNTU3OTA3Njg4fQ.V9pS-5fqQBSzQXGkBv9YZWigOqYrK7zJPEL6m7Vsb2E"
-      }
-    })
-    .subscribe(res => {
-      this.leadsInfoChanged.next(res);
-
-    });
+      .get("http://localhost:5000/api/leads/" + leadsID, {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1NzgyMTI4OCwiZXhwIjoxNTU3OTA3Njg4fQ.V9pS-5fqQBSzQXGkBv9YZWigOqYrK7zJPEL6m7Vsb2E"
+        }
+      })
+      .subscribe(res => {
+        this.leadsInfoChanged.next(res);
+      });
   }
 
-  fetchEventsInfo(leadsID){
-
-    this.clientId=leadsID;
+  fetchEventsInfo(leadsID) {
+    this.clientId = leadsID;
     this.http
-    .get("http://localhost:5000/api/leads/"+leadsID+"/events", {
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1NzgyMTI4OCwiZXhwIjoxNTU3OTA3Njg4fQ.V9pS-5fqQBSzQXGkBv9YZWigOqYrK7zJPEL6m7Vsb2E"
-      }
-    })
-    .subscribe(res => {
-      this.leadsEventsChanged.next(res);
-
-    });
+      .get("http://localhost:5000/api/leads/" + leadsID + "/events", {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1NzgyMTI4OCwiZXhwIjoxNTU3OTA3Njg4fQ.V9pS-5fqQBSzQXGkBv9YZWigOqYrK7zJPEL6m7Vsb2E"
+        }
+      })
+      .subscribe(res => {
+        this.leadsEventsChanged.next(res);
+      });
   }
 
-  fetchLeadsId(){
+  searchLeadsList(date1: string, date2: string, search: string) {
+    if(search == null){
+      search = "";
+    }
+    this.http
+      .get(`http://localhost:5000/api/leads?start=${date1}\&end=${date2}\&search=${search}`, {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1NzgyMTI4OCwiZXhwIjoxNTU3OTA3Njg4fQ.V9pS-5fqQBSzQXGkBv9YZWigOqYrK7zJPEL6m7Vsb2E"
+        }
+      })
+      .subscribe(res => {
+        this.leadsChanged.next(res);
+      });
+  }
+
+  fetchLeadsId() {
     return this.clientId;
   }
 
