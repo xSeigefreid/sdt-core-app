@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ["./leads-list.page.scss"]
 })
 export class LeadsListPage implements OnInit {
+  isFetching = false;
   clients: any;
   constructor(private http: HttpClient, private leadsService: LeadsService) {}
   client: LeadsClientModel;
@@ -32,7 +33,9 @@ export class LeadsListPage implements OnInit {
     
     this.leadsListSubs = this.leadsService.leadsChanged.subscribe(leads => {
       this.clients = leads;
+      this.isFetching = false;
     });
+    this.isFetching = true;
     this.leadsService.fetchLeadsList();
   }
 

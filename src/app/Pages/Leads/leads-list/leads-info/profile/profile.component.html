@@ -1,4 +1,7 @@
- <ion-card>
+<div *ngIf="isFetching" text-center>
+    <ion-spinner  name="crescent"></ion-spinner>
+    </div>
+ <ion-card *ngIf="!isFetching">
   <ion-card-header>
     <ion-card-title>{{ clients.first_name + clients.last_name }}</ion-card-title>
     <ion-card-subtitle>{{ clients.address }}</ion-card-subtitle>
