@@ -46,6 +46,7 @@ export class LeadsPopoverComponent implements OnInit {
   date1: string;
   date2: string;
   categoryInput: string;
+  radioInput:any;
 
   constructor(
     public popoverController: PopoverController,

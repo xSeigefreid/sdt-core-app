@@ -3,7 +3,7 @@
     <ion-button slot="start" fill="clear">
       <ion-menu-button></ion-menu-button>
     </ion-button>
-    <ion-title>Leads</ion-title>
+    <ion-title *ngIf="!isSearching">Leads</ion-title>
     <ion-item lines="none" *ngIf="isSearching" color="transparent" slot="end">
       Search Results for "{{ searchInput }}"
       <ion-button fill="outline"   (click)="disableSearch()">

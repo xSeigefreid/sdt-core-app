@@ -1,10 +1,34 @@
 <ion-list lines="inline">
-    <ion-item>
+    <ion-item lines="none">
+      <ion-radio-group [(ngModel)]="radioInput">
+          <ion-list-header>
+              <ion-label>Search By:</ion-label>
+            </ion-list-header>
+          <ion-row>
+              <ion-col>
+                   <ion-item>
+                      <ion-label>Name</ion-label>
+                      <ion-radio mode="md" item-left value="name"></ion-radio>
+                 </ion-item>
+               </ion-col>
+          
+              <ion-col>
+                  <ion-item>
+                      <ion-label>Date</ion-label>
+                      <ion-radio mode="md" item-left value="date"></ion-radio>
+                 </ion-item>
+              </ion-col>         
+          </ion-row>
+      </ion-radio-group>
+    </ion-item>
+  
+  
+  <ion-item *ngIf="radioInput=='name'">
         <ion-label position="floating">Search:</ion-label>
         <ion-input [(ngModel)]="searchInput"></ion-input>
       </ion-item>
 
-  <ion-item detail="true">
+  <ion-item detail="true" *ngIf="radioInput=='date'">
     <ion-label position="floating">Date from:</ion-label>
     <ion-datetime
       display-format="MMM DD, YYYY"
@@ -13,7 +37,7 @@
     </ion-datetime>
   </ion-item>
 
-  <ion-item detail="true">
+  <ion-item detail="true" *ngIf="radioInput=='date'">
       <ion-label position="floating">Date to:</ion-label>
       <ion-datetime
         display-format="MMM DD, YYYY"
