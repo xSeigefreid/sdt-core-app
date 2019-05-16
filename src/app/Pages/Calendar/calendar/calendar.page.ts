@@ -1,15 +1,23 @@
 import { CalendarComponent } from "ionic2-calendar/calendar";
-import { Component, OnInit, ViewChild, Inject, LOCALE_ID } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  Inject,
+  LOCALE_ID,
+  DoCheck
+} from "@angular/core";
 import { AlertController, ModalController } from "@ionic/angular";
 import { formatDate } from "@angular/common";
 import { AddTargetComponent } from "../add-target/add-target.component";
+import { EventsService } from "./events.service";
 
 @Component({
   selector: "app-calendar",
   templateUrl: "./calendar.page.html",
   styleUrls: ["./calendar.page.scss"]
 })
-export class CalendarPage implements OnInit {
+export class CalendarPage implements OnInit, DoCheck {
   event = {
     title: "",
     desc: "",
@@ -20,22 +28,8 @@ export class CalendarPage implements OnInit {
 
   minDate = new Date().toISOString();
 
-  eventSource = [
-    {
-      title: "Shat sa maa",
-      desc: "Libre ni liam",
-      startTime: new Date(Date.UTC(2019, 4, 8)),
-      endTime: new Date(Date.UTC(2019, 4, 9)),
-      allDay: true
-    },
-    {
-      title: "Shat sa sasa",
-      desc: "Libre ni Juno",
-      startTime: new Date(Date.UTC(2019, 4, 8)),
-      endTime: new Date(Date.UTC(2019, 4, 9)),
-      allDay: true
-    }
-  ];
+  eventSource = [];
+
   viewTitle;
 
   calendar = {
@@ -48,11 +42,17 @@ export class CalendarPage implements OnInit {
   constructor(
     private alertCtrl: AlertController,
     @Inject(LOCALE_ID) private locale: string,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private eventService: EventsService
   ) {}
 
   ngOnInit() {
     this.resetEvent();
+    this.eventService.fetchEvents();
+  }
+
+  ngDoCheck() {
+    this.eventSource = this.eventService.events;
   }
 
   resetEvent() {
