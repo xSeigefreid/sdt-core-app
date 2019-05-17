@@ -21,10 +21,10 @@ export class NegativePage implements OnInit {
   constructor(private reportService: ReportService) { }
 
   ngOnInit() {
-    this.reportService.getData();
     this.data = this.reportService.data.subscribe(res => {
       this.reportService.calculate();
       this.negative = this.reportService.negative;
+      this.clearData();
       this.displayData();
     });
   }
@@ -48,5 +48,16 @@ export class NegativePage implements OnInit {
         this.notInterested += this.negative[row].cnt;
       }
     }
+  }
+
+  clearData() {
+    this.declined = 0;
+    this.doNotCall = 0;
+    this.doNotEmail = 0;
+    this.dqClient = 0;
+    this.faxMachine = 0;
+    this.hungUp = 0;
+    this.notInService = 0;
+    this.notInterested = 0;
   }
 }

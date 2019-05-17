@@ -22,7 +22,6 @@ export class SummaryPage implements OnInit {
   constructor(private reportService: ReportService) { }
 
   ngOnInit() {
-    this.reportService.getData();
     this.data = this.reportService.data.subscribe(res => {
       this.reportService.calculate();
       this.reports = res;
@@ -30,6 +29,7 @@ export class SummaryPage implements OnInit {
       this.positive = this.reportService.positive;
       this.noContact = this.reportService.noContact;
       this.negative = this.reportService.negative;
+      this.clearData();
       this.changeDisplay();
     });
   }
@@ -47,5 +47,12 @@ export class SummaryPage implements OnInit {
       this.noContactNum += this.noContact[row].cnt;
     }
     this.neverDialNum = this.totalRec - this.totalCalls;
+  }
+  clearData() {
+    this.totalCalls = 0;
+    this.positiveNum = 0;
+    this.negativeNum = 0;
+    this.noContactNum = 0;
+    this.neverDialNum = 0;
   }
 }

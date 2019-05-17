@@ -12,15 +12,9 @@ export class ReportPage implements OnInit {
   isSearching = false;
   date1: Date = null;
   date2: Date = null;
-  reports: any;
-  data: Subscription;
   constructor(private reportService: ReportService) { }
 
   ngOnInit() {
-    this.reportService.getData();
-    this.data = this.reportService.data.subscribe(reports => {
-      this.reports = reports;
-    });
   }
 
   enableSearch() {

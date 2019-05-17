@@ -7,11 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class ReportService {
   data = new Subject<Object>();
   reports: any = [];
-  call_results: any = [];
   total: number = 0;
-  totalCalls: any = 0;
-  pos: number = 0;
-  neg: number = 0;
   summary: any = [];
   positive: any = [];
   negative: any = [];
@@ -26,11 +22,6 @@ export class ReportService {
       this.reports = res;
       this.data.next(res);
     });
-    this.http.get(
-      'http://localhost:5000/api/calls', { headers: { Authorization: this.token}
-    }).subscribe(res => {
-      this.call_results = res;
-    });
   }
   getFilteredData(start, end) {
     this.http.get(
@@ -41,32 +32,20 @@ export class ReportService {
     });
   }
   calculate() {
+// tslint:disable-next-line: forin
     for (let row in this.reports) {
         // this.total += (this.reports[row]["cnt"]);
-        var element = this.reports[row];
-        if (element.type=="positive") {
-          this.positive.push(element);
-        }
-        if (element.type=="no contact") {
-          this.noContact.push(element);
-        }
-        if (element.type=="negative") {
-          this.negative.push(element);
-        }
-        this.total=element.total_rec;
-        // if(element.cnt){
-        //   this.totalCalls += element.cnt;
-        // }
-        
-        // if(element.type=="positive"){
-        //   this.pos += element.cnt;
-        // }
-        // if(element.type=="no contact"){
-        //   this.noContact += element.cnt;
-        // }
-        // if(element.type=="negative"){
-        //   this.neg += element.cnt;
-        // }
+      var element = this.reports[row];
+      if (element.type == "positive") {
+        this.positive.push(element);
+      }
+      if (element.type == "no contact") {
+        this.noContact.push(element);
+      }
+      if (element.type == "negative") {
+        this.negative.push(element);
+      }
+      this.total = element.total_rec;
     }
   }
 }

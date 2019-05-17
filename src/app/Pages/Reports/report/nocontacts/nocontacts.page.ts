@@ -17,10 +17,10 @@ export class NocontactsPage implements OnInit {
   constructor(private reportService: ReportService) { }
 
   ngOnInit() {
-    this.reportService.getData();
     this.data = this.reportService.data.subscribe(res => {
       this.reportService.calculate();
       this.noContact = this.reportService.noContact;
+      this.clearData();
       this.displayData();
     });
   }
@@ -38,5 +38,10 @@ export class NocontactsPage implements OnInit {
       }
     }
   }
-
+  clearData() {
+    this.anvm = 0;
+    this.ansMachine = 0;
+    this.busy = 0;
+    this.notAvailable = 0;
+  }
 }

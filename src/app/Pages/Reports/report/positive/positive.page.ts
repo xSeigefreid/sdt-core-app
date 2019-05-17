@@ -18,10 +18,10 @@ export class PositivePage implements OnInit {
   constructor(private reportService: ReportService) { }
 
   ngOnInit() {
-    this.reportService.getData();
     this.data = this.reportService.data.subscribe(res => {
       this.reportService.calculate();
       this.positive = this.reportService.positive;
+      this.clearData();
       this.displayData();
     });
   }
@@ -39,5 +39,12 @@ export class PositivePage implements OnInit {
         this.furtherInfo += this.positive[row].cnt;
       }
     }
+  }
+  clearData() {
+    this.appointments = 0;
+    this.forFF = 0;
+    this.forQA = 0;
+    this.resetApp = 0;
+    this.furtherInfo = 0;
   }
 }
