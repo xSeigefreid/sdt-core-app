@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportService } from './report.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-report',
@@ -10,9 +12,15 @@ export class ReportPage implements OnInit {
   isSearching = false;
   date1: Date = null;
   date2: Date = null;
-  constructor() { }
+  reports: any;
+  data: Subscription;
+  constructor(private reportService: ReportService) { }
 
   ngOnInit() {
+    this.reportService.getData();
+    this.data = this.reportService.data.subscribe(reports => {
+      this.reports = reports;
+    });
   }
 
   enableSearch() {
@@ -25,7 +33,7 @@ export class ReportPage implements OnInit {
     this.date2 = null;
   }
   search() {
-    alert(this.date1 + '\n' + this.date2);
+    this.reportService.getFilteredData(this.date1, this.date2);
     this.enableSearch();
   }
 }
