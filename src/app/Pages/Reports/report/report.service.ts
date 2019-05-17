@@ -33,6 +33,9 @@ export class ReportService {
   }
   calculate() {
 // tslint:disable-next-line: forin
+    this.positive = [];
+    this.negative = [];
+    this.noContact = [];
     for (let row in this.reports) {
         // this.total += (this.reports[row]["cnt"]);
       var element = this.reports[row];
