@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="bgGrad">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/leads/tabs/leads"></ion-back-button>
     </ion-buttons>
@@ -18,11 +18,13 @@
   <app-profile *ngIf="choice === 'profile'"></app-profile>
   <app-status *ngIf="choice === 'status'"></app-status>
 </ion-content>
-<ion-fab *ngIf="choice === 'status'" (click) = "gotostatusmodal()" vertical="bottom" horizontal="end">
-    <ion-fab-button>
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-
-
-
+<ion-fab
+  *ngIf="choice === 'status'"
+  (click)="gotostatusmodal()"
+  vertical="bottom"
+  horizontal="end"
+>
+  <ion-fab-button>
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

@@ -13,11 +13,23 @@ export class LeadsService {
   leadsEventsChanged = new Subject<Object>();
   clientId: string;
   token: string =
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1Nzk4MzAyMCwiZXhwIjoxNTU4MDY5NDIwfQ.ibKWoCuSwbbyX2mHY38enPRCeTKaQ88QTPuRO53nTh4";
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1ODA2OTQ4MSwiZXhwIjoxNTU4MTU1ODgxfQ.cMVCBn70sUpx7DtRnqX6zA2_wSoNRdlQ9EsBaw7ayGY";
 
   fetchLeadsList() {
     this.http
       .get("http://localhost:5000/api/leads", {
+        headers: {
+          Authorization: this.token
+        }
+      })
+      .subscribe(res => {
+        this.leadsChanged.next(res);
+      });
+  }
+
+  fetchLeadsCategory(category) {
+    this.http
+      .get(`http://localhost:5000/api/leads?appointment=${category}`, {
         headers: {
           Authorization: this.token
         }
