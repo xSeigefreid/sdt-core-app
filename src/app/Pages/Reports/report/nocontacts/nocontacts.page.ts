@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ReportService } from '../report.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-nocontacts',
@@ -6,10 +8,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nocontacts.page.scss'],
 })
 export class NocontactsPage implements OnInit {
-
-  constructor() { }
+  data: Subscription;
+  noContact: any = [];
+  anvm: number = 0;
+  ansMachine: number = 0;
+  busy: number = 0;
+  notAvailable: number = 0;
+  constructor(private reportService: ReportService) { }
 
   ngOnInit() {
+    this.reportService.getData();
+    this.data = this.reportService.data.subscribe(res => {
+      this.reportService.calculate();
+      this.noContact = this.reportService.noContact;
+      this.displayData();
+    });
+  }
+
+  displayData() {
+    for (let row in this.noContact) {
+      if (this.noContact[row].call_result_id === 14) {
+        this.anvm += this.noContact[row].cnt;
+      } else if (this.noContact[row].call_result_id === 13) {
+        this.ansMachine += this.noContact[row].cnt;
+      } else if (this.noContact[row].call_result_id === 23) {
+        this.busy += this.noContact[row].cnt;
+      } else if (this.noContact[row].call_result_id === 22) {
+        this.notAvailable += this.noContact[row].cnt;
+      }
+    }
   }
 
 }
