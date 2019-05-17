@@ -1,7 +1,4 @@
 <ion-content>
-  <div *ngIf="isFetching" text-center>
-    <ion-spinner name="crescent"></ion-spinner>
-  </div>
   <ion-list *ngIf="!isFetching">
     <ion-item
       *ngFor="let client of clients"
