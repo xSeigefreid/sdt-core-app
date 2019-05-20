@@ -13,8 +13,7 @@ export class LeadsService {
   leadsEventsChanged = new Subject<Object>();
   clientId: string;
   token: string =
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1ODA2OTQ4MSwiZXhwIjoxNTU4MTU1ODgxfQ.cMVCBn70sUpx7DtRnqX6zA2_wSoNRdlQ9EsBaw7ayGY";
-
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1ODMyNzA5NSwiZXhwIjoxNTU4NDEzNDk1fQ.GZlQ0TLws7pc4wpC0VPxI4gyT5B2owl2CRa9btasj-g";
   fetchLeadsList() {
     this.http
       .get("http://localhost:5000/api/leads", {
