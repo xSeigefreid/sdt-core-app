@@ -1,14 +1,37 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
+  <ion-toolbar class="bgGrad">
+    <ion-button slot="start" fill="clear">
       <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>
-      Leads
-    </ion-title>
+    </ion-button>
+    <ion-title *ngIf="!isSearching">Leads</ion-title>
+    <ion-item lines="none" *ngIf="isSearching" color="transparent" slot="end">
+      Search Results for "{{ searchInput }}"
+      <ion-button fill="outline"   (click)="disableSearch()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-button
+      *ngIf="!isSearching"
+      slot="end"
+      fill="clear"
+      (click)="enableSearch($event)"
+    >
+      <ion-icon name="search"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  
+  <ion-tabs>
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="upcoming">
+        <ion-label>Upcoming</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="leads">
+        <ion-label>Leads</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="lapsed">
+        <ion-label>Laps</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

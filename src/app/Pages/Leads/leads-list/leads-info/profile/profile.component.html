@@ -1,0 +1,24 @@
+<div *ngIf="isFetching" text-center>
+  <ion-spinner name="crescent"></ion-spinner>
+</div>
+<ion-card *ngIf="!isFetching">
+  <ion-card-header>
+    <ion-card-title>{{
+      clients.first_name}} {{clients.last_name}}</ion-card-title>
+    <ion-card-subtitle>{{ clients.address }}</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <dl>
+      <dt>Contact Information:</dt>
+      <dd>Phone: {{ clients.target }}</dd>
+      <dd>Mobile: {{ clients.sms }}</dd>
+      <dd>Email: {{ clients.email }}</dd>
+      <dt>Company Information:</dt>
+      <dd>Website: {{ clients.website }}</dd>
+      <dd>Emp size: {{ clients.empsize }}</dd>
+      <dd>Revenue: {{ clients.rev }}</dd>
+      <dd>PC Users: {{ clients.pc_users }}</dd>
+      <dd>SIC Description: {{ clients.desc }}</dd>
+    </dl>
+  </ion-card-content>
+</ion-card>

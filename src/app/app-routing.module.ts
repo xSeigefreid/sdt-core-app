@@ -11,14 +11,17 @@ const routes: Routes = [
   { path: 'calendar', loadChildren: './Pages/Calendar/calendar/calendar.module#CalendarPageModule' },
   { path: 'report', loadChildren: './Pages/Reports/report/report.module#ReportPageModule' },
   { path: 'login', loadChildren: './Pages/Authentication/login/login.module#LoginPageModule' },
-  { path: 'display', loadChildren: './Pages/Profile/display/display.module#DisplayPageModule' },
 
   // to be removed
   { path: 'leads-list', loadChildren: './Pages/Leads/leads-list/leads-list.module#LeadsListPageModule' },
   { path: 'lapsed-list', loadChildren: './Pages/Leads/lapsed-list/lapsed-list.module#LapsedListPageModule' },
   { path: 'upcoming-list', loadChildren: './Pages/Leads/upcoming-list/upcoming-list.module#UpcomingListPageModule' },
   { path: 'edit-form', loadChildren: './Pages/Leads/edit-form/edit-form.module#EditFormPageModule' },
+  { path: 'display', loadChildren: './Pages/Profile/display/display.module#DisplayPageModule' },
   { path: 'edit-form', loadChildren: './Pages/Profile/edit-form/edit-form.module#EditFormPageModule' },
+  { path: 'leads-info', loadChildren: './Pages/Leads/leads-list/leads-info/leads-info.module#LeadsInfoPageModule' },
+  { path: 'leads-info', loadChildren: './Pages/Leads/leads-list/leads-info/leads-info.module#LeadsInfoPageModule' },
+
 ];
 
 @NgModule({
