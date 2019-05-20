@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'leads-info', loadChildren: './Pages/Leads/leads-list/leads-info/leads-info.module#LeadsInfoPageModule' },
   { path: 'leads-info', loadChildren: './Pages/Leads/leads-list/leads-info/leads-info.module#LeadsInfoPageModule' },
 
+
 ];
 
 @NgModule({

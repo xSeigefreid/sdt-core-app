@@ -1,15 +1,67 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>
-        Reports
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
-    
-  </ion-content>
-  
+  <ion-toolbar color="grade">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+      <ion-title>Reports</ion-title>
+        <ion-buttons slot="primary">
+          <ion-button slot="end" fill="clear" (click)="enableSearch()">
+            <ion-icon name="search" *ngIf="!isSearching && !afterSearch"></ion-icon>
+             
+            <ion-icon name="close-circle-outline" *ngIf="isSearching"></ion-icon> 
+          </ion-button>
+          <ion-button slot="primary" fill="clear" (click)="clear()">
+            <ion-icon name="close" *ngIf="afterSearch"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar *ngIf="isSearching">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Date From</ion-label>
+            <ion-datetime display-format="MMM DD, YYYY" value="null" [(ngModel)]="date1"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Date To</ion-label>
+            <ion-datetime display-format="MMM DD, YYYY" value="null" [(ngModel)]="date2"></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-button slot="end" (click)="search()">Generate</ion-button>
+            <ion-button slot="end" (click)="clearFields()">
+                <ion-icon name="close"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-tabs>
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="summary" style="--color-selected: #0e5ad3">
+        <ion-label>SUMMARY</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="positive" style="--color-selected: green">
+        <ion-label>POSITIVE CONTACTS</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="negative" style="--color-selected: #b7b700">
+        <ion-label>NEGATIVE CONTACTS</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="no" style="--color-selected: #06e0e0">
+        <ion-label>NO CONTACTS</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-content>
