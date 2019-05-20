@@ -13,8 +13,7 @@ export class EventsService {
     this.http
       .get("http://localhost:5000/api/leads", {
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1Nzk4MzIyMSwiZXhwIjoxNTU4MDY5NjIxfQ.n78DbjQe-JTf7zZP0fRRDbQMuIDfNcn1Q7qHLL9bZ3A"
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1ODMyNzA5NSwiZXhwIjoxNTU4NDEzNDk1fQ.GZlQ0TLws7pc4wpC0VPxI4gyT5B2owl2CRa9btasj-g`
         }
       })
       .subscribe(res => {
