@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportService } from './report.service';
 import { Subscription } from 'rxjs';
-
+import { LoadingController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 @Component({
   selector: 'app-report',
   templateUrl: './report.page.html',
@@ -12,7 +13,9 @@ export class ReportPage implements OnInit {
   isSearching = false;
   date1: Date = null;
   date2: Date = null;
-  constructor(private reportService: ReportService) { }
+  constructor(private reportService: ReportService, public alertController: AlertController) {
+
+   }
   
   ngOnInit() {
   }
@@ -26,12 +29,28 @@ export class ReportPage implements OnInit {
     this.date1 = null;
     this.date2 = null;
   }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      subHeader: 'Error',
+      message: 'Empty Field/s',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
   search() {
-    
-    this.reportService.getFilteredData(this.date1, this.date2);
-    this.enableSearch();
-    this.afterSearch = true;
-    
+   
+      if(this.date1 == null || this.date2 == null){
+        
+      this.presentAlert();
+  }
+      
+      else{
+        this.reportService.getFilteredData(this.date1, this.date2);
+      this.enableSearch();
+      this.afterSearch = true;}
   }
   clear(){
     this.reportService.negative = [];

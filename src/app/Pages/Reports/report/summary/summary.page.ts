@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportService } from '../report.service';
 import { Subscription } from 'rxjs';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-summary',
@@ -19,7 +20,8 @@ export class SummaryPage implements OnInit {
   noContactNum: number = 0;
   neverDialNum: number = 0;
   data: Subscription;
-  constructor(private reportService: ReportService) { }
+  isFetching = false;
+  constructor(private reportService: ReportService, private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.data = this.reportService.data.subscribe(res => {
@@ -31,8 +33,11 @@ export class SummaryPage implements OnInit {
       this.noContact = this.reportService.noContact;
       this.negative = this.reportService.negative;
       this.changeDisplay();
+      this.isFetching = false;
     });
+    
   }
+  
   changeDisplay(){
     for(let row in this.positive){
       this.totalCalls += +this.positive[row].cnt;

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { LoadingController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,8 +13,9 @@ export class ReportService {
   positive: any = [];
   negative: any = [];
   noContact: any = [];
-  token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1ODMxNDc3MSwiZXhwIjoxNTU4NDAxMTcxfQ.N8epyUTCLy0LtIGIwD8BDexdw0MtlpNcMVIZ7U75tpc";
-  constructor(private http: HttpClient) { }
+  isFetching = false;
+  token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1ODMzNDY0MywiZXhwIjoxNTU4NDIxMDQzfQ.AFZcbicq-A_0jYqbg4ry5Wufqq0pOmjQ7kzAUaZ9tsE";
+  constructor(private http: HttpClient, private loadingctrl: LoadingController) { }
 
   getData() {
     this.http.get(
@@ -30,7 +32,20 @@ export class ReportService {
       this.reports = res;
       this.calculate();
       this.data.next(res);
+      this.isFetching = false;
     });
+    this.isFetching = true;
+    this.loadingctrl.create({
+      keyboardClose: true,
+     message: "Generating Data..",
+   })
+   .then(loadingEl=>{
+     loadingEl.present().then(()=>{
+       if(!this.isFetching){
+         loadingEl.dismiss();
+       }
+     });
+   });
   }
   calculate() {
 // tslint:disable-next-line: forin
