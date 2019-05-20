@@ -18,11 +18,19 @@ export class NocontactsPage implements OnInit {
 
   ngOnInit() {
     this.data = this.reportService.data.subscribe(res => {
-      this.reportService.calculate();
-      this.noContact = this.reportService.noContact;
+      // this.reportService.calculate();
       this.clearData();
+      this.noContact = this.reportService.noContact;
+      
       this.displayData();
+      // console.log("test no contact");
     });
+  }
+  ionViewWillEnter() {
+    this.clearData();
+    this.noContact = this.reportService.noContact;
+    this.displayData();
+    // console.log("test no contact");
   }
 
   displayData() {
@@ -39,6 +47,7 @@ export class NocontactsPage implements OnInit {
     }
   }
   clearData() {
+    
     this.anvm = 0;
     this.ansMachine = 0;
     this.busy = 0;

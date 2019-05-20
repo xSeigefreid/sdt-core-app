@@ -12,7 +12,7 @@ export class ReportService {
   positive: any = [];
   negative: any = [];
   noContact: any = [];
-  token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMTlUMDQ6MjM6MTUuMDAwWiIsImlhdCI6MTU1ODA0MTU4OSwiZXhwIjoxNTU4MTI3OTg5fQ.eRlySCDTsNHb-SErWvbooyqS_nymbbpUwEnHZIZTtDM";
+  token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1ODMxNDc3MSwiZXhwIjoxNTU4NDAxMTcxfQ.N8epyUTCLy0LtIGIwD8BDexdw0MtlpNcMVIZ7U75tpc";
   constructor(private http: HttpClient) { }
 
   getData() {
@@ -28,6 +28,7 @@ export class ReportService {
       `http://localhost:5000/api/reports?start=${start}&end=${end}`, { headers: { Authorization: this.token}
     }).subscribe(res => {
       this.reports = res;
+      this.calculate();
       this.data.next(res);
     });
   }
@@ -40,15 +41,21 @@ export class ReportService {
         // this.total += (this.reports[row]["cnt"]);
       var element = this.reports[row];
       if (element.type == "positive") {
-        this.positive.push(element);
+        this.positive = [...this.positive, element];
+        // this.positive.push(element);
       }
       if (element.type == "no contact") {
-        this.noContact.push(element);
+        this.noContact = [...this.noContact, element];
+        // this.noContact.push(element);
       }
       if (element.type == "negative") {
-        this.negative.push(element);
+        this.negative = [...this.negative, element];
+        // this.negative.push(element);
       }
       this.total = element.total_rec;
     }
+    // console.log(this.positive);
+    // console.log(this.negative);
+    // console.log(this.noContact);
   }
 }

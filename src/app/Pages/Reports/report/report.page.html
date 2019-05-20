@@ -6,8 +6,12 @@
       <ion-title>Reports</ion-title>
         <ion-buttons slot="primary">
           <ion-button slot="end" fill="clear" (click)="enableSearch()">
-            <ion-icon name="search" *ngIf="!isSearching"></ion-icon> 
+            <ion-icon name="search" *ngIf="!isSearching && !afterSearch"></ion-icon>
+             
             <ion-icon name="close-circle-outline" *ngIf="isSearching"></ion-icon> 
+          </ion-button>
+          <ion-button slot="primary" fill="clear" (click)="clear()">
+            <ion-icon name="close" *ngIf="afterSearch"></ion-icon>
           </ion-button>
         </ion-buttons>
   </ion-toolbar>

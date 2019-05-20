@@ -8,12 +8,12 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./report.page.scss'],
 })
 export class ReportPage implements OnInit {
-
+  afterSearch = false;
   isSearching = false;
   date1: Date = null;
   date2: Date = null;
   constructor(private reportService: ReportService) { }
-
+  
   ngOnInit() {
   }
 
@@ -27,7 +27,18 @@ export class ReportPage implements OnInit {
     this.date2 = null;
   }
   search() {
+    
     this.reportService.getFilteredData(this.date1, this.date2);
     this.enableSearch();
+    this.afterSearch = true;
+    
+  }
+  clear(){
+    this.reportService.negative = [];
+    this.reportService.positive = [];
+    this.reportService.noContact = [];
+    this.reportService.total = 0;
+    this.reportService.data.next();
+    this.afterSearch = false;
   }
 }

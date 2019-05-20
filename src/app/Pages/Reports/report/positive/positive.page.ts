@@ -19,11 +19,18 @@ export class PositivePage implements OnInit {
 
   ngOnInit() {
     this.data = this.reportService.data.subscribe(res => {
-      this.reportService.calculate();
-      this.positive = this.reportService.positive;
+      // this.reportService.calculate();
       this.clearData();
+      this.positive = this.reportService.positive;
       this.displayData();
+      // console.log("test positive");
     });
+  }
+  ionViewWillEnter() {
+    this.clearData();
+    this.positive = this.reportService.positive;
+    this.displayData();
+    // console.log("test positive");
   }
   displayData() {
     for (let row in this.positive) {

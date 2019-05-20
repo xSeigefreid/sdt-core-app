@@ -22,11 +22,19 @@ export class NegativePage implements OnInit {
 
   ngOnInit() {
     this.data = this.reportService.data.subscribe(res => {
-      this.reportService.calculate();
-      this.negative = this.reportService.negative;
+      // this.reportService.calculate();
       this.clearData();
+      this.negative = this.reportService.negative;
       this.displayData();
+      // console.log("test negative");
     });
+  }
+
+  ionViewWillEnter() {
+    this.clearData();
+    this.negative = this.reportService.negative;
+    this.displayData();
+    // console.log("test negative");
   }
   displayData() {
     for (let row in this.negative) {
