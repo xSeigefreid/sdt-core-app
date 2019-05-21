@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { CanLoad, Route, UrlSegment, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { LoginService } from './login.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginGuard implements CanLoad {
+export class AuthGuard implements CanLoad {
   
-  constructor(private loginService: LoginService, private router: Router){}
+  constructor(private authService: AuthService, private router: Router){}
 
   canLoad(route: Route, 
     segments: UrlSegment[]
     ): Observable<boolean> | Promise<boolean> | boolean {
-      if (!this.loginService.userIsAuthenticated){
+      if (!this.authService.userIsAuthenticated){
         this.router.navigateByUrl('/login');
       }
-      return this.loginService.userIsAuthenticated;
+      return this.authService.userIsAuthenticated;
     }
 }

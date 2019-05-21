@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,12 +10,12 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginPage implements OnInit {
   isLogin = true;
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
   onLogin() {
-    this.loginService.login();
+    this.authService.login();
     this.router.navigateByUrl('/leads');
   }
 onSubmit(form: NgForm) {

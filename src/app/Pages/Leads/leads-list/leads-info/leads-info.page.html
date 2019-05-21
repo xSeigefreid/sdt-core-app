@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/leads/tabs/leads"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ clients.company }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-segment (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="profile">
+      <ion-label>Profile</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="status">
+      <ion-label>Status</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <app-profile *ngIf="choice === 'profile'"></app-profile>
+  <app-status *ngIf="choice === 'status'"></app-status>
+</ion-content>
+<ion-fab *ngIf="choice === 'status'" (click) = "gotostatusmodal()" vertical="bottom" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+

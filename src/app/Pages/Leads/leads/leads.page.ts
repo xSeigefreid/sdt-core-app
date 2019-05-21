@@ -1,61 +1,47 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { LeadsClientModel } from './leads-client.model';
-import { CategoriesModel } from './categories.model';
+import { Component, OnInit, Input } from "@angular/core";
+import { PopoverController } from "@ionic/angular";
+import { LeadsPopoverComponent } from "./leads-popover/leads-popover.component";
+import { HttpClient } from "@angular/common/http";
+import { LeadsService } from "../leads.service";
 
 @Component({
-  selector: 'app-leads',
-  templateUrl: './leads.page.html',
-  styleUrls: ['./leads.page.scss'],
+  selector: "app-leads",
+  templateUrl: "./leads.page.html",
+  styleUrls: ["./leads.page.scss"]
 })
 export class LeadsPage implements OnInit {
+  isSearching = false;
+  searchInput = null;
+  constructor(
+    public popoverController: PopoverController,
+    private leadsService: LeadsService
+  ) {}
 
-  @Input() cat: CategoriesModel[] = [{
-    category:'All'
-  },{
-    category:'Appointment Set'
-  },{
-    category:'Rescheduled'
-  },{
-    category:'For follow-up'
-  },{
-    category:'Close won'
-  },{
-    category:'Account assign'
-  },{
-    category:'Account lost'
-  },{
-    category:'No Budget'
-  },{
-    category:'No Interest'
-  },{
-    category:'Sent Proposal'
-  },
-  ];
+  ngOnInit() {}
 
-
-isSearching = false;
-date1:Date = null;
-date2:Date = null;
-categoryInput:string;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-  enableSearch(){
-    this.isSearching = !this.isSearching;
-    this.date1 = null;
-    this.date2 = null;
-  }
-  clearFields(){
-    this.date1 = null;
-    this.date2 = null;
-  }
-  search(){
-    
-    alert(this.date1+"\n"+this.date2+"\n"+this.categoryInput);
-    this.enableSearch();
+  async enableSearch(event) {
+    this.popoverController
+      .create({
+        component: LeadsPopoverComponent,
+        event
+      })
+      .then(popover => {
+        popover.present();
+        return popover.onDidDismiss();
+      })
+      .then(resultData => {
+        if (resultData.role === "confirm") {
+          this.isSearching = true;
+          this.searchInput = resultData.data;
+        }
+        if (resultData.role === "cancel") {
+          this.isSearching = false;
+        }
+      });
   }
 
-  
+  disableSearch() {
+    this.isSearching = false;
+    this.leadsService.fetchLeadsList();
+  }
 }

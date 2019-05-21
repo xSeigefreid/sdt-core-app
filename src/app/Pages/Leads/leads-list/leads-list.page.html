@@ -1,14 +1,20 @@
 <ion-content>
-  <ion-list>
+  <div *ngIf="isFetching" text-center>
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  <ion-list *ngIf="!isFetching">
     <ion-item
       *ngFor="let client of clients"
-      [routerLink]="['/info', client.client]">
-      <ion-thumbnail slot="start">
-        <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-      </ion-thumbnail>
+      [routerLink]="['/leads', client.target_detail_id]"
+    >
+      <ion-avatar slot="start">
+        <img
+          src="data:image/png;base64,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"
+        />
+      </ion-avatar>
       <ion-label>
         <h2>{{ client.company }}</h2>
-        <p>{{ client.client }} | {{ client.position }}</p>
+        <p>{{ client.first_name }} {{ client.last_name }}</p>
       </ion-label>
     </ion-item>
   </ion-list>

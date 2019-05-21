@@ -6,12 +6,12 @@
 </ion-header>
 
 <ion-content padding class="form-content">
-  <form [formGroup]="validations_form"  (ngSubmit)="onSubmit(validations_form.value)">
+  <form (ngSubmit)="onSubmit(validations_form.value)">
     
 
     <ion-item>
       <ion-label position="floating" color="primary">Name</ion-label>
-      <ion-input type="text" formControlName="name"></ion-input>
+      <ion-input type="text"></ion-input>
     </ion-item>
     <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.name">
@@ -23,7 +23,7 @@
 
     <ion-item>
       <ion-label position="floating" color="primary">Middle Initial</ion-label>
-      <ion-input type="text" formControlName="midIn"></ion-input>
+      <ion-input type="text"></ion-input>
     </ion-item>
     <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.midIn">
@@ -35,7 +35,7 @@
 
     <ion-item>
       <ion-label position="floating" color="primary">Last name</ion-label>
-      <ion-input type="text" formControlName="lastname"></ion-input>
+      <ion-input type="text"></ion-input>
     </ion-item>
     <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.lastname">
@@ -47,14 +47,14 @@
 
     <ion-item>
       <ion-label position="floating" color="primary">Gender</ion-label>
-      <ion-select formControlName="gender" cancelText="Cancel" okText="OK">
+      <ion-select cancelText="Cancel" okText="OK">
         <ion-select-option *ngFor="let gender of genders" [value]="gender">{{gender}}</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating" color="primary">Address</ion-label>
-      <ion-input type="text" formControlName="addr"  placeholder="Street, City, State, Zip code"></ion-input>
+      <ion-input type="text" placeholder="Street, City, State, Zip code"></ion-input>
     </ion-item>
     <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.addr">
@@ -64,16 +64,16 @@
       </ng-container>
     </div>
 
-    <div formGroupName="country_phone">
+    <div>
       <ion-item>
         <ion-label position="floating" color="primary">Country</ion-label>
-        <ion-select formControlName="country" cancelText="Cancel" okText="OK">
+        <ion-select cancelText="Cancel" okText="OK">
           <ion-select-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-select-option>
         </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating" color="primary">Contact</ion-label>
-        <ion-input placeholder="{{ validations_form.value.country_phone.country.sample_phone }}" type="text" formControlName="phone"></ion-input>
+        <ion-input type="text"></ion-input>
       </ion-item>
       <div class="validation-errors">
         <ng-container *ngFor="let validation of validation_messages.phone">
@@ -85,7 +85,7 @@
     </div>
     <ion-item>
       <ion-label position="floating" color="primary">SMS</ion-label>
-      <ion-input type="text" formControlName="sms" ></ion-input>
+      <ion-input type="text"></ion-input>
     </ion-item>
     <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.sms">
@@ -97,7 +97,7 @@
 
     <ion-item>
       <ion-label position="floating" color="primary">Email</ion-label>
-      <ion-input type="text" formControlName="email"></ion-input>
+      <ion-input type="text"></ion-input>
     </ion-item>
     <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.email">
@@ -108,7 +108,7 @@
     </div>
     <ion-item>
       <ion-label position="floating" color="primary">Website</ion-label>
-      <ion-input type="text" formControlName="web" placeholder="www."></ion-input>
+      <ion-input type="text" placeholder="www."></ion-input>
     </ion-item>
     <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.web">
@@ -121,7 +121,7 @@
     <!-- These validations are for the form group -->
     <ion-item>
       <ion-label color="primary">I accept terms and conditions</ion-label>
-      <ion-checkbox color="primary" formControlName="terms"></ion-checkbox>
+      <ion-checkbox color="primary"></ion-checkbox>
     </ion-item>
     <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.terms">

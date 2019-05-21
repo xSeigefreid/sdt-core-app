@@ -1,18 +1,18 @@
 export interface Profile {
     id: string;
     fname: string;
-    mname: string;
     lname: string;
-    gender: string;
+    prefix: string;
     suffix: string;
-    job: string;
+    jobTitle: string;
     address: string;
     city: string;
     state: string;
+    state_abv: string;
+    country: string;
+    abv: string;
     postalcode: string;
-    phone: string;
     sms: string;
     email: string;
     web: string;
-
 }

@@ -1,6 +1,12 @@
-.bgGrad{
-    --background: linear-gradient(340deg, #83f859 0%, #7be954 13.5%, #74d651 33.33%, #72cf50 100%) !important;
-  }
-  
-  
-  
+.bgGrad {
+  --background: linear-gradient(
+    340deg,
+    #83f859 0%,
+    #7be954 13.5%,
+    #74d651 33.33%,
+    #72cf50 100%
+  ) !important;
+}
+ion-tab-button {
+  --color-selected: #10dc60;
+}
