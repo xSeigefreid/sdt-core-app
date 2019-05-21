@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { HttpClient } from '@angular/common/http';
+
+import { GlobalService } from '../../../global.service';
 
 @Component({
   selector: 'app-login',
@@ -9,27 +13,35 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  isLogin = true;
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(public token: GlobalService, private http: HttpClient, private authService: AuthService, private loginService: LoginService, private router: Router) { }
+  
+  isLogin = false;
+  username: string;
+  pass: string;
+  res: any;
 
   ngOnInit() {
-    console.log('asdasdasdadsads');
+    this.token.token = "";
   }
-  onLogin() {
-    this.loginService.login();
-    this.router.navigateByUrl('/leads');
+
+  onLogin() { }
+
+  onSubmit(form: NgForm) {
+
+    this.username = form.value.username;
+    this.pass = form.value.password;
+
+    this.http.post('http://localhost:5000/api/users/login/', {
+      username: this.username,
+      password: this.pass,
+    }).subscribe((response) => {
+      if(JSON.parse(JSON.stringify(response)).hasOwnProperty('token') == true) {
+        this.token.token = JSON.parse(JSON.stringify(response)).token;
+        this.isLogin = true;
+        this.loginService.login();
+        this.authService.login();
+        this.router.navigateByUrl('/leads');
+      }
+    });
   }
-onSubmit(form: NgForm) {
-  if(!form.valid) {
-    return;
-  }
-  const email = form.value.email;
-  const pass = form.value.pass;
-  console.log(email,pass);
-  if(this.isLogin) {
-    //send request to login server
-  }else {
-    //send request to sign up serve
-  }
-}
 }
