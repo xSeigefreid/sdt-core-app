@@ -3,6 +3,7 @@ import { LeadsClientModel } from "./leads/leads-client.model";
 import { StatusModel } from "./leads/status.model";
 import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
+import { GlobalService } from "../../global.service";
 
 @Injectable({
   providedIn: "root"
@@ -12,14 +13,12 @@ export class LeadsService {
   leadsInfoChanged = new Subject<Object>();
   leadsEventsChanged = new Subject<Object>();
   clientId: string;
-  token: string =
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1ODMzMTIyNywiZXhwIjoxNTU4NDE3NjI3fQ.doQAgz3g1zx4M-iPcyNfxbD-CRzQgKJnhZlHvje-SBQ";
 
   fetchLeadsList() {
     this.http
-      .get("http://localhost:5000/api/leads", {
+      .get(this.token.url + "/leads", {
         headers: {
-          Authorization: this.token
+          Authorization: this.token.token
         }
       })
       .subscribe(res => {
@@ -29,9 +28,9 @@ export class LeadsService {
 
   fetchLeadsCategory(category) {
     this.http
-      .get(`http://localhost:5000/api/leads?appointment=${category}`, {
+      .get(this.token.url + `/leads?appointment=${category}`, {
         headers: {
-          Authorization: this.token
+          Authorization: this.token.token
         }
       })
       .subscribe(res => {
@@ -42,9 +41,9 @@ export class LeadsService {
   fetchLeadsInfo(leadsID) {
     this.clientId = leadsID;
     this.http
-      .get("http://localhost:5000/api/leads/" + leadsID, {
+      .get(this.token.url + "/leads/" + leadsID, {
         headers: {
-          Authorization: this.token
+          Authorization: this.token.token
         }
       })
       .subscribe(res => {
@@ -55,9 +54,9 @@ export class LeadsService {
   fetchEventsInfo(leadsID) {
     this.clientId = leadsID;
     this.http
-      .get("http://localhost:5000/api/leads/" + leadsID + "/events", {
+      .get(this.token.url + "/leads/" + leadsID + "/events", {
         headers: {
-          Authorization: this.token
+          Authorization: this.token.token
         }
       })
       .subscribe(res => {
@@ -71,10 +70,11 @@ export class LeadsService {
     }
     this.http
       .get(
-        `http://localhost:5000/api/leads?start=${date1}\&end=${date2}\&search=${search}`,
+        this.token.url +
+          `/leads?start=${date1}\&end=${date2}\&search=${search}`,
         {
           headers: {
-            Authorization: this.token
+            Authorization: this.token.token
           }
         }
       )
@@ -87,7 +87,7 @@ export class LeadsService {
     return this.clientId;
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public token: GlobalService) {
     this.fetchLeadsList();
   }
 }
