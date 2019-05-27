@@ -31,7 +31,7 @@ export class LoginPage implements OnInit {
     this.username = form.value.username;
     this.pass = form.value.password;
 
-    this.http.post('http://localhost:5000/api/users/login/', {
+    this.http.post(this.token.url + '/login', {
       username: this.username,
       password: this.pass,
     }).subscribe((response) => {

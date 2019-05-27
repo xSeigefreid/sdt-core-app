@@ -3,9 +3,11 @@ import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { LoadingController } from '@ionic/angular';
 import { GlobalService } from '../../../global.service';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class ReportService {
   data = new Subject<Object>();
   reports: any = [];
@@ -15,7 +17,6 @@ export class ReportService {
   negative: any = [];
   noContact: any = [];
   isFetching = false;
-  // token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1ODMzNDY0MywiZXhwIjoxNTU4NDIxMDQzfQ.AFZcbicq-A_0jYqbg4ry5Wufqq0pOmjQ7kzAUaZ9tsE";
   constructor(private http: HttpClient, private loadingctrl: LoadingController, public token: GlobalService) { }
 
   getData() {

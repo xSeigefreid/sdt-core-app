@@ -1,5 +1,8 @@
 {
   "name": "sdt-core-app",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
   "type": "angular"
 }

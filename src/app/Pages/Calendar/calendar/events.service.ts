@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { GlobalService } from '../../../global.service';
 
 @Injectable({
   providedIn: "root"
@@ -7,13 +8,13 @@ import { HttpClient } from "@angular/common/http";
 export class EventsService {
   events = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public token: GlobalService) {}
 
   fetchEvents() {
     this.http
-      .get("http://localhost:5000/api/leads", {
+      .get(this.token.url + "/leads", {
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidGFyZ2V0X2RldGFpbF9pZCI6MSwidXNlcm5hbWUiOiJqYW5lc09TIiwiY3JlYXRlZF9hdCI6IjIwMTgtMDEtMThUMTI6MjM6MTUuMDAwWiIsImlhdCI6MTU1ODMyNzA5NSwiZXhwIjoxNTU4NDEzNDk1fQ.GZlQ0TLws7pc4wpC0VPxI4gyT5B2owl2CRa9btasj-g`
+          Authorization: this.token.token,
         }
       })
       .subscribe(res => {

@@ -10,6 +10,6 @@ export class GlobalService {
 
   constructor() {
     this.token = '';
-    this.url = 'http://localhost:5000/api';
+    this.url = 'http://192.168.3.223:5000/api';
   }
 }
